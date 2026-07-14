@@ -25,6 +25,7 @@ const promises = [
 ];
 
 export default function Home() {
+  const memoryPath = (name: string) => `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/memories/${name}`;
   const [catTaps, setCatTaps] = useState(0);
   const [connected, setConnected] = useState(false);
   const [signalSent, setSignalSent] = useState(false);
@@ -83,12 +84,12 @@ export default function Home() {
     <section className="chapter keepsakes" aria-labelledby="keepsakes-title">
       <header><p className="chapter-no">Recovered keepsakes · Volume one</p><h2 id="keepsakes-title">Things love made<br/>with its own hands</h2><p>Drawings, photographs, and tiny worlds we made for one another.</p></header>
       <div className="keepsake-grid">
-        <figure className="wide"><button className="open-memory" type="button" onClick={() => setSelectedMemory("/memories/moon-birthday-art.jpeg") } aria-label="Open this keepsake"><img src="/memories/moon-birthday-art.jpeg" alt="Artwork Quin drew of Lia in front of a moon combining their birthdays"/></button><figcaption>Our birthdays, sharing one moon.</figcaption></figure>
-        <figure><button className="open-memory" type="button" onClick={() => setSelectedMemory("/memories/lia-beomi.jpeg") } aria-label="Open this keepsake"><img src="/memories/lia-beomi.jpeg" alt="Lia together with Beomi"/></button><figcaption>Two cuties. No further notes.</figcaption></figure>
-        <figure><button className="open-memory" type="button" onClick={() => setSelectedMemory("/memories/monthaversary-drawing.jpeg") } aria-label="Open this keepsake"><img src="/memories/monthaversary-drawing.jpeg" alt="A monthaversary drawing Lia made"/></button><figcaption>A monthaversary preserved on paper.</figcaption></figure>
-        <figure><button className="open-memory" type="button" onClick={() => setSelectedMemory("/memories/beomi-01.jpeg") } aria-label="Open this keepsake"><img src="/memories/beomi-01.jpeg" alt="Beomi looking cute"/></button><figcaption>Beomi, archive supervisor.</figcaption></figure>
-        <figure><button className="open-memory" type="button" onClick={() => setSelectedMemory("/memories/morning-drawing-01.jpeg") } aria-label="Open this keepsake"><img src="/memories/morning-drawing-01.jpeg" alt="One of Lia’s morning drawings for Quin"/></button><figcaption>One of the mornings she drew into being.</figcaption></figure>
-        <figure className="wide video-card"><video controls preload="metadata" aria-label="Otter dance animation Quin made for Lia"><source src="/memories/otter-dance.mp4" type="video/mp4"/></video><figcaption>Even when the current pulls, I still reach for you.</figcaption></figure>
+        <figure className="wide"><button className="open-memory" type="button" onClick={() => setSelectedMemory(memoryPath("moon-birthday-art.jpeg")) } aria-label="Open this keepsake"><img src={memoryPath("moon-birthday-art.jpeg")} alt="Artwork Quin drew of Lia in front of a moon combining their birthdays"/></button><figcaption>Our birthdays, sharing one moon.</figcaption></figure>
+        <figure><button className="open-memory" type="button" onClick={() => setSelectedMemory(memoryPath("lia-beomi.jpeg")) } aria-label="Open this keepsake"><img src={memoryPath("lia-beomi.jpeg")} alt="Lia together with Beomi"/></button><figcaption>Two cuties. No further notes.</figcaption></figure>
+        <figure><button className="open-memory" type="button" onClick={() => setSelectedMemory(memoryPath("monthaversary-drawing.jpeg")) } aria-label="Open this keepsake"><img src={memoryPath("monthaversary-drawing.jpeg")} alt="A monthaversary drawing Lia made"/></button><figcaption>A monthaversary preserved on paper.</figcaption></figure>
+        <figure><button className="open-memory" type="button" onClick={() => setSelectedMemory(memoryPath("beomi-01.jpeg")) } aria-label="Open this keepsake"><img src={memoryPath("beomi-01.jpeg")} alt="Beomi looking cute"/></button><figcaption>Beomi, archive supervisor.</figcaption></figure>
+        <figure><button className="open-memory" type="button" onClick={() => setSelectedMemory(memoryPath("morning-drawing-01.jpeg")) } aria-label="Open this keepsake"><img src={memoryPath("morning-drawing-01.jpeg")} alt="One of Lia’s morning drawings for Quin"/></button><figcaption>One of the mornings she drew into being.</figcaption></figure>
+        <figure className="wide video-card"><video controls preload="metadata" aria-label="Otter dance animation Quin made for Lia"><source src={memoryPath("otter-dance.mp4")} type="video/mp4"/></video><figcaption>Even when the current pulls, I still reach for you.</figcaption></figure>
       </div>
     </section>
 {selectedMemory && <div className="memory-modal" role="dialog" aria-modal="true" aria-label="Expanded keepsake" onClick={() => setSelectedMemory(null)}><button type="button" onClick={() => setSelectedMemory(null)} aria-label="Close expanded keepsake">×</button><img src={selectedMemory} alt="Expanded personal keepsake" onClick={(event) => event.stopPropagation()}/><p>Recovered memory · tap outside or press Escape to close</p></div>}
@@ -121,6 +122,7 @@ export default function Home() {
     <section className="finale" id="finale"><button className="final-moon" type="button" onClick={() => setMoonSecret(!moonSecret)} aria-label="Reveal the moon secret">☾</button><div className="dawn"/><p className="kicker">Primary celebration signal · 07.22</p><h2>Happy Birthday,<br/><em>Lia.</em></h2><p>In every timeline, I would still look for you.</p><div className="ferrets" aria-label="Placeholder for two dancing ferret mascots"><span>〰</span><b>♡</b><span>〰</span></div><p className="final-line">The day this universe became softer because you entered it.</p>{moonSecret && <p className="moon-message">My love always finds you.</p>}<a href="#signal">Return to the signal ↑</a></section>
   </main>;
 }
+
 
 
 
