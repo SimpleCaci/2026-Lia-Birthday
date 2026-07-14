@@ -15,7 +15,7 @@ const archive = [
   ["phone", "Phone", "A message that stayed with me"], ["lantern", "Lantern", "A light you left on for me"],
   ["book", "Book", "A story we carried together"], ["flower", "Flower", "Something beautiful I notice"],
   ["cart", "Shopping cart", "An extremely practical ocean-crossing plan"], ["star", "Star", "Mission preview: us"],
-  ["mail", "Mailbox", "A small Dear Lia"], ["cat", "Archivist cat", "Five taps may be excessive"],
+  ["mail", "Mailbox", "A small Dear Lia"], ["cat", "Beomi", "Keeper of her memories"],
 ];
 
 const promises = [
@@ -30,6 +30,7 @@ export default function Home() {
   const [signalSent, setSignalSent] = useState(false);
   const [cassettePlaying, setCassettePlaying] = useState(false);
   const [moonSecret, setMoonSecret] = useState(false);
+  const [visitedArchives, setVisitedArchives] = useState<string[]>([]);
   return <main>
     <section className="hero" id="signal" aria-labelledby="hero-title">
       <div className="stars" aria-hidden="true" />
@@ -67,16 +68,16 @@ export default function Home() {
 
     <section className="chapter garden" id="archive">
       <header><p className="chapter-no">Chapter 04 · Memory garden</p><h2>The archive of<br/>ordinary things</h2><p>Tap an object. Every small thing kept its own piece of the story.</p></header>
-      <div className="archive-grid">{archive.map(([icon,name,note])=><details className={`object ${icon}`} key={name}><summary><span className="doodle" aria-hidden="true">{icon === "star" ? "✦" : icon === "flower" ? "❀" : icon === "cat" ? "ᓚᘏᗢ" : icon === "mail" ? "✉" : icon === "crown" ? "♕" : icon === "book" ? "▥" : icon === "phone" ? "▯" : icon === "lantern" ? "♧" : icon === "cart" ? "▱" : "◉"}</span><b>{name}</b></summary><div><p>{note}</p><small>Private archive item pending review</small></div></details>)}</div>
-      <div className="cat-secret"><button type="button" onClick={() => setCatTaps((count) => Math.min(count + 1, 5))} aria-label="Tap the archivist cat"><span aria-hidden="true">ᓚᘏᗢ</span> Tap the archivist</button><p>{catTaps < 5 ? `The archivist is pretending not to watch you. ${catTaps ? `${5-catTaps} more.` : ""}` : "Secret recovered: Even the quietest parts of my life started making room for you."}</p></div>
+      <p className="archive-count"><b>{visitedArchives.length}</b> / {archive.length} memories discovered</p><div className="archive-grid">{archive.map(([icon,name,note])=><details className={`object ${icon} ${visitedArchives.includes(name) ? "visited" : ""}`} key={name} onToggle={(event) => { if (event.currentTarget.open) setVisitedArchives((items) => items.includes(name) ? items : [...items, name]); }}><summary><span className="doodle" aria-hidden="true">{icon === "star" ? "✦" : icon === "flower" ? "❀" : icon === "cat" ? "ᓚᘏᗢ" : icon === "mail" ? "✉" : icon === "crown" ? "♕" : icon === "book" ? "▥" : icon === "phone" ? "▯" : icon === "lantern" ? "♧" : icon === "cart" ? "▱" : "◉"}</span><b>{name}</b></summary><div><p>{note}</p><small>Private archive item pending review</small></div></details>)}</div>
+      <div className="cat-secret"><button type="button" onClick={() => setCatTaps((count) => Math.min(count + 1, 5))} aria-label="Tap Beomi cat"><span aria-hidden="true">ᓚᘏᗢ</span> Tap Beomi</button><p>{catTaps < 5 ? `Beomi is pretending not to watch you. ${catTaps ? `${5-catTaps} more.` : ""}` : "Secret recovered: Even the quietest parts of my life started making room for you."}</p></div>
     </section>
 
     <section className="chapter blue-hour" id="distance">
       <header><p className="chapter-no">Chapter 05 · Shared sky</p><h2>Two lives at blue hour</h2></header>
       <div className={`windows ${connected ? "connected" : ""}`}>
-        <article><p className="stamp">California · local time</p><div className="moon"/><h3>One window</h3><p>Days ending while yours begin.</p><div className="ferret">〰 <small>Quin</small></div></article>
+        <article className="california"><p className="stamp">California · sun time</p><div className="sun" aria-label="California sun"/><h3>One window</h3><p>Days ending while yours begin.</p><div className="ferret">〰 <small>Quin</small></div></article>
         <div className="thread"><span>7,700-ish inconvenient miles</span></div>
-        <article><p className="stamp">Pakistan · local time</p><div className="moon"/><h3>Another window</h3><p>The same moon, arriving differently.</p><div className="ferret">〰 <small>Lia</small></div></article>
+        <article className="pakistan"><p className="stamp">Pakistan · moon time</p><div className="moon" aria-label="Pakistan moon"/><h3>Another window</h3><p>The same moon, arriving differently.</p><div className="ferret">〰 <small>Lia</small></div></article>
       </div>
       <button className="connect-button" type="button" onClick={() => setConnected(!connected)}>{connected ? "Signal connected · same sky" : "Connect our skies"}</button>
       <blockquote>The hours are different.<br/><em>The sky is not.</em></blockquote>
@@ -100,6 +101,7 @@ export default function Home() {
     <section className="finale" id="finale"><button className="final-moon" type="button" onClick={() => setMoonSecret(!moonSecret)} aria-label="Reveal the moon secret">☾</button><div className="dawn"/><p className="kicker">Primary celebration signal · 07.22</p><h2>Happy Birthday,<br/><em>Lia.</em></h2><p>In every timeline, I would still look for you.</p><div className="ferrets" aria-label="Placeholder for two dancing ferret mascots"><span>〰</span><b>♡</b><span>〰</span></div><p className="final-line">The day this universe became softer because you entered it.</p>{moonSecret && <p className="moon-message">My love always finds you.</p>}<a href="#signal">Return to the signal ↑</a></section>
   </main>;
 }
+
 
 
 
