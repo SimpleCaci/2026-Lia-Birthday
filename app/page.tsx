@@ -36,9 +36,13 @@ export default function Home() {
   const [secret, setSecret] = useState("");
   const [gateError, setGateError] = useState(false);
   const [selectedMemory, setSelectedMemory] = useState<string | null>(null);
-  useEffect(() => setUnlocked(sessionStorage.getItem("timeline-unlocked") === "yes"), []);
+  const [fullUnlocked, setFullUnlocked] = useState(false);
+  const [secondSecret, setSecondSecret] = useState("");
+  const [secondError, setSecondError] = useState(false);
+  useEffect(() => { setUnlocked(sessionStorage.getItem("timeline-unlocked") === "yes"); setFullUnlocked(sessionStorage.getItem("timeline-full-unlocked") === "yes"); }, []);
   useEffect(() => { const close = (event: KeyboardEvent) => { if (event.key === "Escape") setSelectedMemory(null); }; window.addEventListener("keydown", close); return () => window.removeEventListener("keydown", close); }, []);
   const enterTimeline = (event: FormEvent<HTMLFormElement>) => { event.preventDefault(); if (secret.trim().toLowerCase() === "solace") { sessionStorage.setItem("timeline-unlocked", "yes"); setUnlocked(true); setGateError(false); } else { setGateError(true); } };
+  const openBirthdayArchive = (event: FormEvent<HTMLFormElement>) => { event.preventDefault(); if (secondSecret.trim().toLowerCase() === "luna") { sessionStorage.setItem("timeline-full-unlocked", "yes"); setFullUnlocked(true); setSecondError(false); } else { setSecondError(true); } };
   if (!unlocked) return <main className="gate"><div className="gate-stars"/><p className="kicker">Private timeline · 05.07 → 07.22</p><h1>Somewhere<br/><em>Between Timelines</em></h1><p>This archive remembers one secret word.</p><form onSubmit={enterTimeline}><label htmlFor="secret-word">What do we call this kind of comfort?</label><div><input id="secret-word" type="password" value={secret} onChange={(event) => setSecret(event.target.value)} autoComplete="off" autoFocus/><button type="submit">Find our timeline</button></div>{gateError && <p role="alert">That signal did not match. Try the word that means comfort.</p>}</form><small>A private archive for Lia</small></main>;
   return <main>
     <section className="hero" id="signal" aria-labelledby="hero-title">
@@ -75,6 +79,7 @@ export default function Home() {
       <div className="film" role="list">{memories.map(([date,text],i)=><article className="frame" role="listitem" key={date}><div className="frame-image"><span>{String(i+1).padStart(2,"0")}</span><p>Reviewed image<br/>or drawing</p></div><p className="stamp">{date}</p><h3>{text}</h3><details><summary>What I felt</summary><p>Private memory text will live here after review.</p></details></article>)}</div>
     </section>
 
+    {fullUnlocked ? <>
     <section className="chapter garden" id="archive">
       <header><p className="chapter-no">Chapter 04 · Memory garden</p><h2>The archive of<br/>ordinary things</h2><p>Tap an object. Every small thing kept its own piece of the story.</p></header>
       <p className="archive-count"><b>{visitedArchives.length}</b> / {archive.length} memories discovered</p><div className="archive-grid">{archive.map(([icon,name,note])=><details className={`object ${icon} ${visitedArchives.includes(name) ? "visited" : ""}`} key={name} onToggle={(event) => { if (event.currentTarget.open) setVisitedArchives((items) => items.includes(name) ? items : [...items, name]); }}><summary><span className="doodle" aria-hidden="true">{icon === "star" ? "✦" : icon === "flower" ? "❀" : icon === "cat" ? "ᓚᘏᗢ" : icon === "mail" ? "✉" : icon === "crown" ? "♕" : icon === "book" ? "▥" : icon === "phone" ? "▯" : icon === "lantern" ? "♧" : icon === "cart" ? "▱" : "◉"}</span><b>{name}</b></summary><div><p>{note}</p><small>Private archive item pending review</small></div></details>)}</div>
@@ -121,8 +126,10 @@ export default function Home() {
     </section>
 
     <section className="finale" id="finale"><button className="final-moon" type="button" onClick={() => setMoonSecret(!moonSecret)} aria-label="Reveal the moon secret">☾</button><div className="dawn"/><p className="kicker">Primary celebration signal · 07.22</p><h2>Happy Birthday,<br/><em>Lia.</em></h2><p>In every timeline, I would still look for you.</p><div className="ferrets" aria-label="Placeholder for two dancing ferret mascots"><span>〰</span><b>♡</b><span>〰</span></div><p className="final-line">The day this universe became softer because you entered it.</p>{moonSecret && <p className="moon-message">My love always finds you.</p>}<a href="#signal">Return to the signal ↑</a></section>
+    </> : <section className="second-gate" aria-labelledby="sealed-title"><div className="sealed-moon" aria-hidden="true">☾</div><p className="kicker">Birthday transmission sealed</p><h2 id="sealed-title">The rest of this timeline<br/><em>is waiting for later.</em></h2><p>You found the beginning. The archive, letter, voice note, and birthday finale are saved behind one more word.</p><form onSubmit={openBirthdayArchive}><label htmlFor="birthday-word">Second secret word</label><div><input id="birthday-word" type="password" value={secondSecret} onChange={(event) => setSecondSecret(event.target.value)} autoComplete="off"/><button type="submit">Open the birthday archive</button></div>{secondError && <p role="alert">That moon signal did not match.</p>}</form><small>You can come back when Quin gives you the word.</small></section>}
   </main>;
 }
+
 
 
 
