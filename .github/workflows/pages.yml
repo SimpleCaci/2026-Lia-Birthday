@@ -1,4 +1,4 @@
-﻿name: Publish birthday site
+name: Publish birthday site
 
 on:
   workflow_dispatch:
@@ -40,3 +40,4 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
+# Deployment retry after enabling public Pages.
