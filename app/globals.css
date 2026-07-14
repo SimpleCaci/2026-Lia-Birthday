@@ -45,15 +45,15 @@
 /* Personal timeline progression */
 .timeline .film{grid-auto-columns:minmax(18rem,29vw)}
 .timeline .frame{background:linear-gradient(180deg,#100e15,#0b0a0e);box-shadow:0 16px 40px rgba(0,0,0,.18)}
-.timeline .frame-image{aspect-ratio:1;background-size:300% 200%;background-repeat:no-repeat;place-content:initial;overflow:hidden}
+.timeline .frame-image{aspect-ratio:1;background-size:337% auto;background-repeat:no-repeat;place-content:initial;overflow:hidden}
 .timeline .frame-image span{position:absolute;right:.75rem;bottom:.75rem;z-index:2;display:grid;place-items:center;width:2.2rem;height:2.2rem;border:1px solid rgba(244,231,198,.55);border-radius:50%;background:rgba(12,11,16,.76);color:var(--cream);font-size:.72rem;backdrop-filter:blur(5px)}
 .timeline .frame-image:before,.timeline .frame-image:after{z-index:1}
-.timeline .progression-1{background-position:0 0}
-.timeline .progression-2{background-position:50% 0}
-.timeline .progression-3{background-position:100% 0}
-.timeline .progression-4{background-position:0 100%}
-.timeline .progression-5{background-position:50% 100%}
-.timeline .progression-6{background-position:100% 100%}
+.timeline .progression-1{background-position:2.5% 4%}
+.timeline .progression-2{background-position:44.5% 4%}
+.timeline .progression-3{background-position:93% 4%}
+.timeline .progression-4{background-position:2.5% 92%}
+.timeline .progression-5{background-position:44.5% 92%}
+.timeline .progression-6{background-position:93% 92%}
 .timeline .frame h3{color:var(--cream);font-size:1.55rem}
 .timeline .memory-story{min-height:7.2rem;color:#bdb6c5;font:400 .96rem/1.62 Georgia,serif}
 .timeline .frame details{border-top:1px dashed rgba(193,138,82,.35);padding-top:.9rem}

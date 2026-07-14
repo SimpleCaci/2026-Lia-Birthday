@@ -77,7 +77,7 @@ export default function Home() {
 
     <section className="chapter timeline" id="timeline">
       <header><p className="chapter-no">Chapter 03 · Timeline anchor 01</p><h2><span>05 · 07</span><br/>How I fell into us</h2><p>The real progression... from wondering who you even were to knowing I want a whole life with you.</p></header>
-      <div className="film" role="list">{memories.map((memory,i)=><article className="frame" role="listitem" key={memory.date}><div className={`frame-image progression-${i+1}`} style={{ backgroundImage: `url(${memoryPath("timeline-progression.png")})` }} role="img" aria-label={`Hand-drawn memory illustration: ${memory.title}`}><span>{String(i+1).padStart(2,"0")}</span></div><p className="stamp">{memory.date}</p><h3>{memory.title}</h3><p className="memory-story">{memory.story}</p><details><summary>What I felt</summary><p>{memory.feeling}</p></details></article>)}</div>
+      <div className="film" role="list">{memories.map((memory,i)=><article className="frame" role="listitem" key={memory.date}><div className={`frame-image progression-${i+1}`} style={{ backgroundImage: `url(${memoryPath("timeline-progression-v2.png")})` }} role="img" aria-label={`Hand-drawn memory illustration: ${memory.title}`}><span>{String(i+1).padStart(2,"0")}</span></div><p className="stamp">{memory.date}</p><h3>{memory.title}</h3><p className="memory-story">{memory.story}</p><details><summary>What I felt</summary><p>{memory.feeling}</p></details></article>)}</div>
     </section>
 
     {fullUnlocked ? <>
