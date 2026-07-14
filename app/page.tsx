@@ -114,7 +114,7 @@ export default function Home() {
     <section className="chapter mission" id="mission">
       <header><p className="chapter-no">Chapter 06 · Project: us</p><h2>Mission log</h2><p>Continue finding one another despite time zones, human error, anxiety, and approximately three functioning brain cells.</p></header>
       <div className={`mission-grid ${signalSent ? "signal-active" : ""}`}><div className="system"><div className="radar"><div className="radar-beam"/><div className="signal-path"/><i/><i/></div><p>SIGNALS SYNCHRONIZING</p></div>
-      <div className="logs">{[["Origin","Two people encountered online."],["Complication","Distance. Deeply inconvenient."],["Recovery protocol","Honesty, reassurance, patience, trying again."],["Partner status","Still my favorite person."],["Assigned role","Her silly destroyer."],["Requested activity","A truly unreasonable amount of cuddling."],["Destination","Together... forever :)"]].map(([a,b])=><div key={a}><span>{a}</span><p>{b}</p></div>)}</div><button className={`transmit ${signalSent ? "sent" : ""}`} type="button" onClick={() => setSignalSent(true)}><span aria-hidden="true">◉</span>{signalSent ? "SIGNAL RECEIVED · I AM STILL HERE" : "SEND SIGNAL"}</button></div>
+      <div className="logs">{[["Origin","Two people encountered online."],["Complication","Distance. Deeply inconvenient."],["Recovery protocol","Honesty, reassurance, patience, trying again."],["Partner status","Still my favorite person."],["Assigned role","Her silly destroyer."],["Requested activity","A truly unreasonable amount of cuddling."],["Destination","Together... forever :)"]].map(([a,b])=><div key={a}><span>{a}</span><p>{b}</p></div>)}</div><button className={`transmit ${signalSent ? "sent" : ""}`} type="button" onClick={() => setSignalSent(true)}><span aria-hidden="true">◉</span>{signalSent ? "SIGNAL RECEIVED · I AM STILL HERE" : "SEND SIGNAL"}</button>{signalSent && <div className="signal-received" role="status"><span>TRANSMISSION RECEIVED</span><b>Quin → Lia</b><p>Her silly destroyer is still here... still choosing her... and requesting immediate cuddles across approximately 7,700 deeply annoying miles.</p><small>Long-term objective: marry you and finally be together forever :)</small></div>}</div>
     </section>
 
     <section className="chapter promises"><header><p className="chapter-no">Chapter 07 · 07.22</p><h2>What I mean when<br/>I say I choose you</h2></header>
@@ -130,6 +130,7 @@ export default function Home() {
     </> : <section className="second-gate" aria-labelledby="sealed-title"><div className="sealed-moon" aria-hidden="true">☾</div><p className="kicker">Birthday transmission sealed</p><h2 id="sealed-title">The rest of this timeline<br/><em>is waiting for later.</em></h2><p>You found the beginning. The archive, letter, voice note, and birthday finale are saved behind one more word.</p><form onSubmit={openBirthdayArchive}><label htmlFor="birthday-word">Second secret word</label><div><input id="birthday-word" type="password" value={secondSecret} onChange={(event) => setSecondSecret(event.target.value)} autoComplete="off"/><button type="submit">Open the birthday archive</button></div>{secondError && <p role="alert">That moon signal did not match.</p>}</form><small>You can come back when Quin gives you the word.</small></section>}
   </main>;
 }
+
 
 
 
