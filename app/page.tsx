@@ -2,12 +2,12 @@
 import { FormEvent, useEffect, useState } from "react";
 
 const memories = [
-  ["Before us", "Two separate timelines, moving quietly toward the same corner of the internet."],
-  ["First signal", "A conversation that could have ended there—but neither of us wanted it to."],
-  ["Talking became normal", "Somewhere between messages, you became part of the shape of every day."],
-  ["05.07", "The day ‘you’ and ‘me’ became ‘us.’"],
-  ["Still choosing", "Not a perfect timeline. A real one, repaired with honesty, patience, and return."],
-  ["Today", "One more ordinary day made extraordinary because you are in it."],
+  ["Before us", "Out of nowhere, you followed my Instagram. I said hi to your thingy, and somehow that tiny choice opened everything."],
+  ["First signal", "We started talking, sharing the heavy things, and feeling understood much faster than either of us expected."],
+  ["What I noticed", "I secretly felt so safe with you. Texting you felt warm, comfortable, and strangely like coming home."],
+  ["05.07", "I built a small pink page to tell you how I felt and ask if we could keep writing this story together."],
+  ["Choosing again", "Later, I built another site to apologize, reassure you, and make it clear that I was still choosing Lia."],
+  ["Today", "I love you dearly, and I will try so, so hard—for you, for us, and for the life we keep imagining."],
 ];
 
 const archive = [
@@ -61,11 +61,11 @@ export default function Home() {
       <div className="browser-window">
         <div className="browser-bar"><span/><span/><span/><p>archive://the-beginning</p></div>
         <div className="browser-content">
-          <div className="ferret-screen" aria-label="Illustration placeholder for Quin ferret at a computer"><b>〰</b><span>Quin ferret<br/>illustration</span></div>
+          <div className="origin-image"><img src={memoryPath("asking-out-site.png")} alt="The pink website Quin made when asking Lia to be together"/><span className="stamp">The page where our story became us</span></div>
           <div className="origin-copy"><p className="stamp">RECOVERED TAB · DATE PENDING</p><h3>It looked ordinary at first.</h3>
-          <p>A small online place. One passing interaction. No dramatic music, no warning that this tab would quietly change the rest of my life.</p>
-          <div className="thought"><span>What happened</span><p>[Add the true story of how you first encountered Lia.]</p></div>
-          <div className="thought secret"><span>What I secretly thought</span><p>[Add the first thing you noticed and why you kept talking.]</p></div></div>
+          <p>You randomly followed my Instagram. I said hi to your thingy, lol, and then we started talking. We shared difficult pieces of ourselves, felt understood, and somehow a random follow became the beginning of everything.</p>
+          <div className="thought"><span>What happened</span><p>You followed me. I said hello. We kept talking until talking to you became the safest part of my day.</p></div>
+          <div className="thought secret"><span>What I secretly thought</span><p>I secretly felt so safe with you. I did not understand why yet; I only knew I felt warm whenever your name appeared.</p></div></div>
         </div>
       </div>
     </section>
@@ -89,6 +89,7 @@ export default function Home() {
         <figure><button className="open-memory" type="button" onClick={() => setSelectedMemory(memoryPath("monthaversary-drawing.jpeg")) } aria-label="Open this keepsake"><img src={memoryPath("monthaversary-drawing.jpeg")} alt="A monthaversary drawing Lia made"/></button><figcaption>A monthaversary preserved on paper.</figcaption></figure>
         <figure><button className="open-memory" type="button" onClick={() => setSelectedMemory(memoryPath("beomi-01.jpeg")) } aria-label="Open this keepsake"><img src={memoryPath("beomi-01.jpeg")} alt="Beomi looking cute"/></button><figcaption>Beomi, archive supervisor.</figcaption></figure>
         <figure><button className="open-memory" type="button" onClick={() => setSelectedMemory(memoryPath("morning-drawing-01.jpeg")) } aria-label="Open this keepsake"><img src={memoryPath("morning-drawing-01.jpeg")} alt="One of Lia’s morning drawings for Quin"/></button><figcaption>One of the mornings she drew into being.</figcaption></figure>
+<figure className="wide"><button className="open-memory" type="button" onClick={() => setSelectedMemory(memoryPath("apology-reassurance-site.png"))} aria-label="Open the apology and reassurance website"><img src={memoryPath("apology-reassurance-site.png")} alt="The terminal-style apology and reassurance website Quin built for Lia"/></button><figcaption>A website made to say: I am sorry, I love you, and I am still choosing you.</figcaption></figure>
         <figure className="wide video-card"><video controls preload="metadata" aria-label="Otter dance animation Quin made for Lia"><source src={memoryPath("otter-dance.mp4")} type="video/mp4"/></video><figcaption>Even when the current pulls, I still reach for you.</figcaption></figure>
       </div>
     </section>
@@ -122,6 +123,8 @@ export default function Home() {
     <section className="finale" id="finale"><button className="final-moon" type="button" onClick={() => setMoonSecret(!moonSecret)} aria-label="Reveal the moon secret">☾</button><div className="dawn"/><p className="kicker">Primary celebration signal · 07.22</p><h2>Happy Birthday,<br/><em>Lia.</em></h2><p>In every timeline, I would still look for you.</p><div className="ferrets" aria-label="Placeholder for two dancing ferret mascots"><span>〰</span><b>♡</b><span>〰</span></div><p className="final-line">The day this universe became softer because you entered it.</p>{moonSecret && <p className="moon-message">My love always finds you.</p>}<a href="#signal">Return to the signal ↑</a></section>
   </main>;
 }
+
+
 
 
 
