@@ -2,12 +2,12 @@
 import { FormEvent, useEffect, useState } from "react";
 
 const memories = [
-  ["Before us", "Out of nowhere, you followed my Instagram. I said hi to your thingy, and somehow that tiny choice opened everything."],
-  ["First signal", "We started talking, sharing the heavy things, and feeling understood much faster than either of us expected."],
-  ["What I noticed", "I secretly felt so safe with you. Texting you felt warm, comfortable, and strangely like coming home."],
-  ["05.07", "I built a small pink page to tell you how I felt and ask if we could keep writing this story together."],
-  ["Choosing again", "Later, I built another site to apologize, reassure you, and make it clear that I was still choosing Lia."],
-  ["Today", "I love you dearly, and I will try so, so hard—for you, for us, and for the life we keep imagining."],
+  ["Before us", "I was literally like... why is this random person following me? Who are you lol."],
+  ["First signal", "Ahhhh she is so cute and so sweet. I did not see you romantically at first though... it was completely platonic. And then I started blushing."],
+  ["04.30 · My birthday", "You literally posted my picture and I was like... whaaa? That was when something in my brain started going yeah, okay, this is different."],
+  ["05.07 · I asked", "I was like... she definitely likes me, so I am just going to be blunt with her. And somehow that terrifying decision became us."],
+  ["Mistakes", "And then... mistakes. Tons of mistakes. We are not pretending otherwise. But we will try our best, communicate, and keep choosing each other."],
+  ["Today", "I love you dearly, and I will try so, so hard. For you... for us... and for the life we keep imagining."],
 ];
 
 const archive = [
@@ -116,13 +116,14 @@ export default function Home() {
     </section>
 
     <section className="letter" id="letter"><div className="candle" aria-hidden="true"/><p className="chapter-no">A letter sent across time</p><h2>Dear Lia,</h2>
-      <div className="letter-copy"><p>Happy birthday, my love.</p><p>It is finally your birthday. You once wrote me a whole book—fifteen or sixteen pages long—called <em>Solace</em>. I remember joking that if I am your solace, then you are my lunatic: my moon beside the sun.</p><p>This website was inspired by the things you love, the movies and stories you return to, and the quiet style of all those worlds. More than that, it is my little form of solace for you. It is a place for how I feel about you, and for the pieces of us I never want to lose.</p><p>I really appreciate that we met. I know we have our ups and downs, but like you said, we will get through them. We will keep finding our way back to one another, and we will always be together.</p><p>Watching <em>Project Hail Mary</em> with you was really cute. I love that even a story about impossible distance became another small thing we could share.</p><p>Happy birthday, Lia. I hope this year is gentle with you. I hope it gives you room to feel safe, known, celebrated, and deeply loved—not only by me, but by the life you are building around yourself.</p><p>Always,<br/><span className="signature">Quin</span></p></div>
-      <button className={`audio ${cassettePlaying ? "playing" : ""}`} type="button" onClick={() => setCassettePlaying(!cassettePlaying)}><span className="reel">◉</span><b>{cassettePlaying ? "Cassette turning…" : "Birthday voice note"}</b><small>{cassettePlaying ? "Audio will begin here after the reviewed recording is added." : "Tap to preview the interaction · never autoplays"}</small></button>
+      <div className="letter-copy"><p>Happy birthday, my love.</p><p>It is finally your birthday. You once wrote me a whole book...fifteen or sixteen pages long...called <em>Solace</em>. I remember joking that if I am your solace, then you are my lunatic... my moon beside the sun.</p><p>This website was inspired by the things you love, the movies and stories you return to, and the quiet style of all those worlds. More than that, it is my little form of solace for you. It is a place for how I feel about you, and for the pieces of us I never want to lose.</p><p>I really appreciate that we met. I know we have our ups and downs, but like you said, we will get through them. We will keep finding our way back to one another, and we will always be together.</p><p>Watching <em>Project Hail Mary</em> with you was really cute. I love that even a story about impossible distance became another small thing we could share.</p><p>Happy birthday, Lia. I hope this year is gentle with you. I hope it gives you room to feel safe, known, celebrated, and deeply loved... not only by me, but by the life you are building around yourself.</p><p>Always,<br/><span className="signature">Quin</span></p></div>
+      <div className={`audio real-audio ${cassettePlaying ? "playing" : ""}`}><button type="button" onClick={() => setCassettePlaying(!cassettePlaying)} aria-label="Turn the birthday cassette"><span className="reel">◉</span></button><div><b>Birthday voice note</b><small>In my own voice... tap play whenever you are ready.</small><audio controls preload="metadata" onPlay={() => setCassettePlaying(true)} onPause={() => setCassettePlaying(false)}><source src={memoryPath("birthday-voice-note.mp3")} type="audio/mpeg"/>Your browser cannot play this recording.</audio></div></div>
     </section>
 
     <section className="finale" id="finale"><button className="final-moon" type="button" onClick={() => setMoonSecret(!moonSecret)} aria-label="Reveal the moon secret">☾</button><div className="dawn"/><p className="kicker">Primary celebration signal · 07.22</p><h2>Happy Birthday,<br/><em>Lia.</em></h2><p>In every timeline, I would still look for you.</p><div className="ferrets" aria-label="Placeholder for two dancing ferret mascots"><span>〰</span><b>♡</b><span>〰</span></div><p className="final-line">The day this universe became softer because you entered it.</p>{moonSecret && <p className="moon-message">My love always finds you.</p>}<a href="#signal">Return to the signal ↑</a></section>
   </main>;
 }
+
 
 
 

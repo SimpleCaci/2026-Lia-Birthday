@@ -29,3 +29,6 @@
 
 /* Origin artifacts */
 .origin-image{background:#17131d;padding:1rem;display:grid;align-content:center;gap:.75rem;overflow:hidden}.origin-image img{width:100%;max-height:31rem;object-fit:contain;border:1px solid rgba(232,224,208,.12)}.origin-image .stamp{text-align:center;color:#b59b7c}@media(max-width:850px){.origin-image{min-height:22rem}.origin-image img{max-height:28rem}}
+
+/* Real birthday recording */
+.real-audio{display:grid;grid-template-columns:3.5rem 1fr;align-items:start}.real-audio>button{grid-row:1;border:1px solid var(--line);background:transparent;color:var(--cream);width:3rem;height:3rem;border-radius:50%;cursor:pointer}.real-audio>div{display:grid;gap:.4rem}.real-audio audio{width:100%;margin-top:.8rem;accent-color:var(--gold)}.real-audio small{grid-column:auto}.real-audio.playing>button{border-color:var(--gold);box-shadow:0 0 20px rgba(193,138,82,.25)}
