@@ -1,13 +1,13 @@
-﻿"use client";
+"use client";
 import { FormEvent, useEffect, useState } from "react";
 
 const memories = [
-  ["Before us", "I was literally like... why is this random person following me? Who are you lol."],
-  ["First signal", "Ahhhh she is so cute and so sweet. I did not see you romantically at first though... it was completely platonic. And then I started blushing."],
-  ["04.30 · My birthday", "You literally posted my picture and I was like... whaaa? That was when something in my brain started going yeah, okay, this is different."],
-  ["05.07 · I asked", "I was like... she definitely likes me, so I am just going to be blunt with her. And somehow that terrifying decision became us."],
-  ["Mistakes", "And then... mistakes. Tons of mistakes. We are not pretending otherwise. But we will try our best, communicate, and keep choosing each other."],
-  ["Today", "I love you dearly, and I will try so, so hard. For you... for us... and for the life we keep imagining."],
+  { date: "Before us", title: "A random follow", story: "I was literally like... why is this random person following me? Who are you lol.", feeling: "Mostly confused. I had no idea that one random notification was about to become the person I would feel safest with." },
+  { date: "First signal", title: "Ahhhhh... she is so cute", story: "You were so cute and so sweet, but I did not see you romantically at first. It was completely platonic.", feeling: "I just liked talking to you. Your name appearing on my phone made everything feel a little warmer... and then, somewhere in all that talking, I started blushing." },
+  { date: "What I noticed", title: "You felt safe", story: "We started talking and sharing the difficult parts of ourselves... and somehow I secretly felt so safe with you.", feeling: "That was the part I did not know how to explain yet. I felt understood. I felt comfy. I wanted to keep telling you things because being known by you did not feel scary." },
+  { date: "04.30 · My birthday", title: "Wait... you posted me?", story: "You literally posted my picture and I was like... whaaa? Something in my brain started going yeah, okay, this is different.", feeling: "I noticed the care behind it. I started wondering if you liked me too, and suddenly all the little things between us felt louder." },
+  { date: "05.07 · I asked", title: "So I was blunt", story: "I was like... she definitely likes me, so I am just going to be blunt with her. And somehow that terrifying decision became us.", feeling: "I was nervous, but I wanted to know. I wanted to keep building this little story with you... and I was so, so grateful when it became ours." },
+  { date: "Still choosing us", title: "After the mistakes", story: "And then... mistakes. Tons of mistakes. We are not pretending otherwise. But we will try our best and keep choosing each other.", feeling: "I love you dearly and I will try so, so hard. One day I want to cuddle you, marry you, and finally be with you forever :)" },
 ];
 
 const archive = [
@@ -76,8 +76,8 @@ export default function Home() {
     </section>
 
     <section className="chapter timeline" id="timeline">
-      <header><p className="chapter-no">Chapter 03 · Timeline anchor 01</p><h2><span>05 · 07</span><br/>The first timeline</h2><p>Not only the milestones. The ordinary moments that became a life.</p></header>
-      <div className="film" role="list">{memories.map(([date,text],i)=><article className="frame" role="listitem" key={date}><div className="frame-image"><span>{String(i+1).padStart(2,"0")}</span><p>Reviewed image<br/>or drawing</p></div><p className="stamp">{date}</p><h3>{text}</h3><details><summary>What I felt</summary><p>Private memory text will live here after review.</p></details></article>)}</div>
+      <header><p className="chapter-no">Chapter 03 · Timeline anchor 01</p><h2><span>05 · 07</span><br/>How I fell into us</h2><p>The real progression... from wondering who you even were to knowing I want a whole life with you.</p></header>
+      <div className="film" role="list">{memories.map((memory,i)=><article className="frame" role="listitem" key={memory.date}><div className={`frame-image progression-${i+1}`} style={{ backgroundImage: `url(${memoryPath("timeline-progression.png")})` }} role="img" aria-label={`Hand-drawn memory illustration: ${memory.title}`}><span>{String(i+1).padStart(2,"0")}</span></div><p className="stamp">{memory.date}</p><h3>{memory.title}</h3><p className="memory-story">{memory.story}</p><details><summary>What I felt</summary><p>{memory.feeling}</p></details></article>)}</div>
     </section>
 
     {fullUnlocked ? <>
