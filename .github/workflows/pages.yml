@@ -31,9 +31,12 @@ jobs:
         env:
           NEXT_PUBLIC_BASE_PATH: /2026-Lia-Birthday
       - uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
+
