@@ -39,7 +39,7 @@ export default function Home() {
   const [fullUnlocked, setFullUnlocked] = useState(false);
   const [secondSecret, setSecondSecret] = useState("");
   const [secondError, setSecondError] = useState(false);
-  useEffect(() => { setUnlocked(sessionStorage.getItem("timeline-unlocked") === "yes"); setFullUnlocked(sessionStorage.getItem("timeline-full-unlocked") === "yes"); }, []);
+  useEffect(() => { const restore = window.setTimeout(() => { setUnlocked(sessionStorage.getItem("timeline-unlocked") === "yes"); setFullUnlocked(sessionStorage.getItem("timeline-full-unlocked") === "yes"); }, 0); return () => window.clearTimeout(restore); }, []);
   useEffect(() => { const close = (event: KeyboardEvent) => { if (event.key === "Escape") setSelectedMemory(null); }; window.addEventListener("keydown", close); return () => window.removeEventListener("keydown", close); }, []);
   const enterTimeline = (event: FormEvent<HTMLFormElement>) => { event.preventDefault(); if (secret.trim().toLowerCase() === "solace") { sessionStorage.setItem("timeline-unlocked", "yes"); setUnlocked(true); setGateError(false); } else { setGateError(true); } };
   const openBirthdayArchive = (event: FormEvent<HTMLFormElement>) => { event.preventDefault(); if (secondSecret.trim().toLowerCase() === "luna") { sessionStorage.setItem("timeline-full-unlocked", "yes"); setFullUnlocked(true); setSecondError(false); } else { setSecondError(true); } };
@@ -130,6 +130,7 @@ export default function Home() {
     </> : <section className="second-gate" aria-labelledby="sealed-title"><div className="sealed-moon" aria-hidden="true">☾</div><p className="kicker">Birthday transmission sealed</p><h2 id="sealed-title">The rest of this timeline<br/><em>is waiting for later.</em></h2><p>You found the beginning. The archive, letter, voice note, and birthday finale are saved behind one more word.</p><form onSubmit={openBirthdayArchive}><label htmlFor="birthday-word">Second secret word</label><div><input id="birthday-word" type="password" value={secondSecret} onChange={(event) => setSecondSecret(event.target.value)} autoComplete="off"/><button type="submit">Open the birthday archive</button></div>{secondError && <p role="alert">That moon signal did not match.</p>}</form><small>You can come back when Quin gives you the word.</small></section>}
   </main>;
 }
+
 
 
 
