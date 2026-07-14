@@ -43,6 +43,7 @@ export default function Home() {
   useEffect(() => { const close = (event: KeyboardEvent) => { if (event.key === "Escape") setSelectedMemory(null); }; window.addEventListener("keydown", close); return () => window.removeEventListener("keydown", close); }, []);
   const enterTimeline = (event: FormEvent<HTMLFormElement>) => { event.preventDefault(); if (secret.trim().toLowerCase() === "solace") { sessionStorage.setItem("timeline-unlocked", "yes"); setUnlocked(true); setGateError(false); } else { setGateError(true); } };
   const openBirthdayArchive = (event: FormEvent<HTMLFormElement>) => { event.preventDefault(); if (secondSecret.trim().toLowerCase() === "luna") { sessionStorage.setItem("timeline-full-unlocked", "yes"); setFullUnlocked(true); setSecondError(false); } else { setSecondError(true); } };
+  const resetTimeline = () => { sessionStorage.removeItem("timeline-unlocked"); sessionStorage.removeItem("timeline-full-unlocked"); setSecret(""); setSecondSecret(""); setFullUnlocked(false); setUnlocked(false); window.scrollTo({ top: 0, behavior: "smooth" }); };
   if (!unlocked) return <main className="gate"><div className="gate-stars"/><p className="kicker">Private timeline · 05.07 → 07.22</p><h1>Somewhere<br/><em>Between Timelines</em></h1><p>This archive remembers one secret word.</p><form onSubmit={enterTimeline}><label htmlFor="secret-word">What do we call this kind of comfort?</label><div><input id="secret-word" type="password" value={secret} onChange={(event) => setSecret(event.target.value)} autoComplete="off" autoFocus/><button type="submit">Find our timeline</button></div>{gateError && <p role="alert">That signal did not match. Try the word that means comfort.</p>}</form><small>A private archive for Lia</small></main>;
   return <main>
     <section className="hero" id="signal" aria-labelledby="hero-title">
@@ -58,7 +59,7 @@ export default function Home() {
     <nav className="dock" aria-label="Story chapters"><span className="dock-signal" title="Timeline active" />
       <a href="#timeline" aria-label="Timeline">◫</a><a href="#archive" aria-label="Memory garden">♧</a>
       <a href="#distance" aria-label="Distance">◐</a><a href="#mission" aria-label="Mission">✦</a><a href="#letter" aria-label="Letter">✉</a>
-    </nav>
+    <button className="reset-timeline" type="button" onClick={resetTimeline} title="Lock both secret-word gates" aria-label="Lock timeline and return to the Solace screen">↺</button></nav>
 
     <section className="chapter origin" id="origin">
       <header><p className="chapter-no">Chapter 02 · Origin signal</p><h2>The website that<br/>brought me to you</h2></header>
@@ -129,6 +130,7 @@ export default function Home() {
     </> : <section className="second-gate" aria-labelledby="sealed-title"><div className="sealed-moon" aria-hidden="true">☾</div><p className="kicker">Birthday transmission sealed</p><h2 id="sealed-title">The rest of this timeline<br/><em>is waiting for later.</em></h2><p>You found the beginning. The archive, letter, voice note, and birthday finale are saved behind one more word.</p><form onSubmit={openBirthdayArchive}><label htmlFor="birthday-word">Second secret word</label><div><input id="birthday-word" type="password" value={secondSecret} onChange={(event) => setSecondSecret(event.target.value)} autoComplete="off"/><button type="submit">Open the birthday archive</button></div>{secondError && <p role="alert">That moon signal did not match.</p>}</form><small>You can come back when Quin gives you the word.</small></section>}
   </main>;
 }
+
 
 
 
